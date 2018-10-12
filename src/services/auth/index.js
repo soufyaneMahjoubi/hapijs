@@ -25,14 +25,16 @@ class AuthModule {
     
     async register(req, res, next) {
         const url = `${envConfig.authApi}/api/users`;
+        axios.defaults.headers.common['Authorization'] = envConfig.token;
         try {
             await axios.post(url, {
-                username: req.query.login,
+                username: req.query.username,
                 password: req.query.password,
                 grade: req.query.grade,
             })
             .then((response) => {
-                return response;
+                console.log(response.data)
+                return response.data;
             })  
         } catch (error) {
             throw error;

@@ -35,9 +35,10 @@ const routes = [
     {
         method: 'GET',
         path: '/register',
-        handler: (request, h) => {
+        handler: async (request, h) => {
             try {
-                const user = authModule.register(request);
+                const user = await authModule.register(request);
+                console.log(user);
                 return 'user';
             } catch (error) {
                 throw error;
